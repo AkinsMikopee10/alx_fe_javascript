@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Quote Generator</title>
-  <style>
-    body { font-family: system-ui, Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
-    #quoteDisplay { padding: 16px; border: 1px solid #ddd; border-radius: 8px; min-height: 64px; margin-bottom: 12px; }
-    button, select { margin: 4px 6px 10px 0; padding: 8px 12px; cursor: pointer; }
-    #formContainer input { display: block; width: 100%; max-width: 480px; padding: 8px; margin: 6px 0; }
-    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0 16px; }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
-  <div id="quoteDisplay"></div>
+  <!-- Category Filter -->
+  <select id="categoryFilter" onchange="filterQuotes()">
+    <option value="all">All Categories</option>
+  </select>
 
-  <div class="toolbar">
-    <button id="newQuote">Show New Quote</button>
-    <button id="exportBtn">Export Quotes (JSON)</button>
+  <!-- Quote Display -->
+  <div id="quoteDisplay"></div>
+  <button id="newQuote">Show New Quote</button>
+
+  <!-- Add Quote Form -->
+  <div id="formContainer"></div>
+
+  <!-- Import/Export -->
+  <div>
+    <button onclick="exportToJsonFile()">Export Quotes</button>
     <input type="file" id="importFile" accept=".json" onchange="importFromJsonFile(event)" />
   </div>
 
-  <h2>Filter by Category</h2>
-  <select id="categoryFilter" onchange="filterQuotes()">
-    <option value="all">All Categories</option>
-    <!-- Dynamically populated -->
-  </select>
-
-  <h2>Add a Quote</h2>
-  <div id="formContainer"></div>
+  <!-- Sync Notification -->
+  <div id="syncNotification" class="hidden"></div>
 
   <script src="script.js"></script>
 </body>
